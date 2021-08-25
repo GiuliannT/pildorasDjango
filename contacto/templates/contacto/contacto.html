@@ -1,0 +1,30 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class='contenedorFormulario'>
+
+        {% if "valido" in request.GET %}
+
+            <p style="color: white;"> Informacion enviada correctamente </p>
+
+        {% endif %}
+
+        {% if "novalido" in request.GET %}
+
+            <p style="color: white;"> No se pudo enviar el mensaje </p>
+
+        {% endif %}
+
+        <form action="" method="POST" style="text-align: center;">
+           <!-- Agrega campo oculto, donde esta un cod largo a modo de clave de forma aleatoria -->
+            {% csrf_token %} 
+            <table style="color: white; margin: 20px auto;">{{miFormulario.as_table}}</table>
+            <input type="submit" value="Enviar" style="width: 150px;">
+        </form>
+    
+    </div>
+
+{% endblock %}
